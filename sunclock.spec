@@ -32,9 +32,6 @@ xmkmf
 # %install
 make install DESTDIR=$RPM_BUILD_ROOT%{_prefix}
 make install.man DESTDIR=$RPM_BUILD_ROOT%{_prefix}
-if [ -f $RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1/sunclock.1x ]; then
-find $RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1/sunclock.1x -type f -exec bzip2 -9f {} \;
-fi
 mkdir -p $RPM_BUILD_ROOT/usr/share/icons
 install wm_icons/sunclock2.xpm -m 644 $RPM_BUILD_ROOT/usr/share/icons/sunclock2.xpm
 
