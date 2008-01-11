@@ -35,15 +35,15 @@ make install.man DESTDIR=$RPM_BUILD_ROOT%{_prefix}
 mkdir -p $RPM_BUILD_ROOT/usr/share/icons
 install wm_icons/sunclock2.xpm -m 644 $RPM_BUILD_ROOT/usr/share/icons/sunclock2.xpm
 
-install -d $RPM_BUILD_ROOT%{_menudir}
-cat <<EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}): \
-        needs="X11" \
-        section="Amusement/Toys" \
-        title="Sunclock" \
-        longtitle="Sophisticated clock for the X Window system" \
-        command="%{name}" \
-        icon="toys_section.png"
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+[Desktop Entry]
+Type=Application
+Categories=Amusement;
+Name=Sunclock
+Comment=Sophisticated clock for the X Window system
+Exec=%{name}
+Icon=toys_section
 EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/
@@ -69,10 +69,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/editkit/rc.common
 %{_prefix}/X11R6/bin/emx
 %{_prefix}/X11R6/bin/sunclock
-%{_prefix}/X11R6/man/man1/sunclock.1*
+%{_prefix}/X11R6/man/man1/*
 %{_prefix}/X11R6/man/man1/emx.1x
 %{_prefix}/X11R6/lib/X11/doc/html/*
 %{_datadir}/icons/sunclock2.xpm
-%_menudir/*
+%{_datadir}/applications/mandriva-*.desktop
 
 
