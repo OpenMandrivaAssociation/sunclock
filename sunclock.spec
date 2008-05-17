@@ -1,6 +1,6 @@
 %define name sunclock
-%define version 3.54.1
-%define release %mkrel 2
+%define version 3.56
+%define release %mkrel 1
 
 Summary: The sophisticated clock for the X Window system
 Name: %{name}
@@ -61,19 +61,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,0755)
-%doc CHANGES coordinates.txt COPYING INSTALL README TODO VMF.txt 
-%{_datadir}/sunclock/Sunclockrc
-%{_datadir}/sunclock/earthmaps/vmf/*
-%{_datadir}/sunclock/i18n/*
-%{_datadir}/editkit/README
-%{_datadir}/editkit/emxrc
-%{_datadir}/editkit/rc.common
-%{_prefix}/X11R6/bin/emx
+%doc CHANGES coordinates.txt COPYING INSTALL README TODO VMF.txt
+%{_datadir}/%name
 %{_prefix}/X11R6/bin/sunclock
 %{_prefix}/X11R6/man/man1/*
-%{_prefix}/X11R6/man/man1/emx.1x
-%{_prefix}/X11R6/lib/X11/doc/html/*
 %{_datadir}/icons/sunclock2.xpm
 %{_datadir}/applications/mandriva-*.desktop
-
-
