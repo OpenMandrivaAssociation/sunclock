@@ -50,11 +50,15 @@ EOF
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/
 #mv $RPM_BUILD_ROOT%{_prefix}/usr/X11R6/lib/X11/doc/html/* $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/.
 
+%if %mdkversion < 200900
 %post
 %update_menus
+%endif
 
+%if %mdkversion < 200900
 %postun
 %clean_menus
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
