@@ -1,6 +1,6 @@
 %define name sunclock
 %define version 3.56
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary: The sophisticated clock for the X Window system
 Name: %{name}
