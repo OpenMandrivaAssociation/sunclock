@@ -10,6 +10,7 @@ License: GPL
 Group: Sciences/Astronomy
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: ftp://ftp.ac-grenoble.fr/ge/geosciences/%{name}-%{version}.tar.bz2
+Patch0: sunclock-3.56-fix-str-fmt.patch
 URL: http://freshmeat.net/projects/sunclock/
 BuildRequires: imake X11-devel jpeg-devel png-devel
 Conflicts:   xrmap
@@ -22,17 +23,16 @@ and therefore occupies little space on the screen, while the "map window"
 displays a large map and offers more advanced functions. 
 
 %prep
-rm -rf $RPM_BUILD_ROOT
-
 %setup -q
+%patch0 -p0
 
 %build
 xmkmf
-%make CDEBUGFLAGS="$RPM_OPT_FLAGS" CXXDEBUGFLAGS="$RPM_OPT_FLAGS"
+%make CDEBUGFLAGS="%{optflags}" CXXDEBUGFLAGS="%{optflags}"
 
-# %install
-make install DESTDIR=$RPM_BUILD_ROOT%{_prefix}
-make install.man DESTDIR=$RPM_BUILD_ROOT%{_prefix}
+%install
+make install DESTDIR=$RPM_BUILD_ROOT%{_prefix} BINDIR=/bin MANDIR=/share/man/man1
+make install.man DESTDIR=$RPM_BUILD_ROOT%{_prefix} BINDIR=/bin MANDIR=/share/man/man1
 mkdir -p $RPM_BUILD_ROOT/usr/share/icons
 install wm_icons/sunclock2.xpm -m 644 $RPM_BUILD_ROOT/usr/share/icons/sunclock2.xpm
 
@@ -46,9 +46,6 @@ Comment=Sophisticated clock for the X Window system
 Exec=%{name}
 Icon=toys_section
 EOF
-
-mkdir -p $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/
-#mv $RPM_BUILD_ROOT%{_prefix}/usr/X11R6/lib/X11/doc/html/* $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/.
 
 %if %mdkversion < 200900
 %post
@@ -67,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,0755)
 %doc CHANGES coordinates.txt COPYING INSTALL README TODO VMF.txt
 %{_datadir}/%name
-%{_prefix}/X11R6/bin/sunclock
-%{_prefix}/X11R6/man/man1/*
+%{_bindir}/sunclock
+%{_mandir}/man1/*
 %{_datadir}/icons/sunclock2.xpm
 %{_datadir}/applications/mandriva-*.desktop
