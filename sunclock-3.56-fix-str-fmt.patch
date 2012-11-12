@@ -1,0 +1,31 @@
+--- readvmf.c.str	2010-01-23 14:01:54.000000000 +0100
++++ readvmf.c	2010-01-23 14:02:06.000000000 +0100
+@@ -480,7 +480,7 @@
+      ret_value = 5;
+      goto abort;
+   }
+-  if (reformat) printf(str);
++  if (reformat) printf("%s",str);
+ 
+   k = 0;
+   num_colors = 0;
+--- widgets.c.str	2010-01-23 14:02:18.000000000 +0100
++++ widgets.c	2010-01-23 14:02:57.000000000 +0100
+@@ -816,13 +816,13 @@
+ 	if (key == '=')
+ 	    sprintf(more+2, "(%c)", (do_sync)? '+' : '-');
+ 	if (key == '[' && do_root <= 0)
+-	    sprintf(more+2, Label[L_ONCE]);
++	    sprintf(more+2, "%s", Label[L_ONCE]);
+ 	if (key == '[' && do_root >= 1)
+-	    sprintf(more+2, Label[L_PERIODIC], root_period);
++	    sprintf(more+2, "%s", Label[L_PERIODIC], root_period);
+ 	if (key == ']' && do_root <= 0)
+-	    sprintf(more+2, Label[L_BLANKSCREEN]);
++	    sprintf(more+2, "%s", Label[L_BLANKSCREEN]);
+ 	if (key == ']' && do_root >= 1)
+-	    sprintf(more+2, Label[L_STARRYSKY]);
++	    sprintf(more+2, "%s", Label[L_STARRYSKY]);
+         if (more[2])
+ 	   strncat(hint, more, 120 - strlen(hint));
+         l = strlen(hint);
