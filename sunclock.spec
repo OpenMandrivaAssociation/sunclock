@@ -11,7 +11,7 @@ Group: Sciences/Astronomy
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: ftp://ftp.ac-grenoble.fr/ge/geosciences/%{name}-%{version}.tar.bz2
 Patch0: sunclock-3.56-fix-str-fmt.patch
-URL: http://freshmeat.net/projects/sunclock/
+URL: https://freshmeat.net/projects/sunclock/
 BuildRequires: imake X11-devel jpeg-devel png-devel
 Conflicts:   xrmap
 
